@@ -7,21 +7,10 @@ import com.ih13b175_16_tomo.st42_kadai01_memo.data.repository.MemoRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-data class MemoDataUiState(
-    val memoCount: Int = 0,
-    val isLoading: Boolean = false,
-    val errorMessage: String? = null,
-)
-
+// Viewからメモ操作を行うためのViewModel
 class MemoViewModel(private val repository: MemoRepository): ViewModel() {
     // メモの状態
     val memos: Flow<List<Memo>> = repository.allMemos
-    var selectedMemoId: Int? = null
-
-    // メモの選択
-    fun setMemoId(memoId: Int) {
-        selectedMemoId = memoId
-    }
 
     // ID指定取得
     fun getMemoById(memoId: Int?): Flow<Memo?> {

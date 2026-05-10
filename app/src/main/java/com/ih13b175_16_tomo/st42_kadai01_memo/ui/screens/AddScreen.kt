@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,14 +24,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+
 import com.ih13b175_16_tomo.st42_kadai01_memo.ui.MemoViewModel
 
+// メモ追加画面
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddScreen(
     viewModel: MemoViewModel,
     onNavigateBack: () -> Unit
 ) {
+    // 入力状態
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
     val isValid = title.isNotBlank() && content.isNotBlank()
@@ -42,7 +45,7 @@ fun AddScreen(
                 title = { Text("メモを追加") },
                 navigationIcon = {
                     IconButton(onClick = { onNavigateBack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "戻る")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "戻る")
                     }
                 }
             )

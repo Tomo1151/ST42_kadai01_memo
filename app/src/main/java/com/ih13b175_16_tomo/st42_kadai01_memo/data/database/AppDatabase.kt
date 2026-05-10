@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+
 import com.ih13b175_16_tomo.st42_kadai01_memo.data.model.Memo
 import com.ih13b175_16_tomo.st42_kadai01_memo.data.model.MemoDao
 
@@ -14,10 +15,10 @@ import com.ih13b175_16_tomo.st42_kadai01_memo.data.model.MemoDao
     exportSchema = false
 )
 abstract class AppDatabase: RoomDatabase() {
-    // DAOの取得
+    // DAOの取得メソッド
     abstract fun memoDao(): MemoDao
 
-    // シングルトンオブジェクト
+    // データベースインスタンス (シングルトンオブジェクト)
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
@@ -28,7 +29,9 @@ abstract class AppDatabase: RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "memo_database",
-                ).build()
+                )
+                .fallbackToDestructiveMigration(false)
+                .build()
 
                 INSTANCE = instance
                 return instance

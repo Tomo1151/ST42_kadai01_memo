@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -22,8 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 import com.ih13b175_16_tomo.st42_kadai01_memo.ui.MemoViewModel
 
+// メモ詳細画面
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
@@ -32,7 +34,7 @@ fun DetailScreen(
     onNavigateBack: () -> Unit,
     onNavigateToEdit: (Int) -> Unit,
 ) {
-    // 当該メモを取得
+    // 当該メモをステートとして取得
     val memo = viewModel.getMemoById(memoId).collectAsState(initial = null).value
 
     if (memo != null) {
@@ -42,7 +44,7 @@ fun DetailScreen(
                     title = { Text("メモの詳細") },
                     navigationIcon = {
                         IconButton(onClick = { onNavigateBack() }) {
-                            Icon(Icons.Default.ArrowBack, contentDescription = "戻る")
+                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "戻る")
                         }
                     },
                     actions = {

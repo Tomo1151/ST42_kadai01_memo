@@ -20,7 +20,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ih13b175_16_tomo.st42_kadai01_memo.data.database.AppDatabase
-import com.ih13b175_16_tomo.st42_kadai01_memo.data.model.MemoDao
 import com.ih13b175_16_tomo.st42_kadai01_memo.data.repository.MemoRepository
 import com.ih13b175_16_tomo.st42_kadai01_memo.ui.MemoViewModel
 import com.ih13b175_16_tomo.st42_kadai01_memo.ui.Screen
@@ -28,19 +27,18 @@ import com.ih13b175_16_tomo.st42_kadai01_memo.ui.screens.AddScreen
 import com.ih13b175_16_tomo.st42_kadai01_memo.ui.screens.DetailScreen
 import com.ih13b175_16_tomo.st42_kadai01_memo.ui.screens.EditScreen
 import com.ih13b175_16_tomo.st42_kadai01_memo.ui.screens.HomeScreen
+
 import com.ih13b175_16_tomo.st42_kadai01_memo.ui.theme.ST42_kadai01_memoTheme
 
 class MainActivity : ComponentActivity() {
-    private lateinit var database: AppDatabase;
-    private lateinit var memoDao: MemoDao;
-    private lateinit var memoRepository: MemoRepository;
-    private lateinit var memoViewModel: MemoViewModel;
+    private lateinit var database: AppDatabase
+    private lateinit var memoRepository: MemoRepository
+    private lateinit var memoViewModel: MemoViewModel
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         database = AppDatabase.getInstance(this)
-        memoDao = database.memoDao()
-        memoRepository = MemoRepository(memoDao)
+        memoRepository = MemoRepository(database.memoDao())
         memoViewModel = MemoViewModel(memoRepository)
 
         super.onCreate(savedInstanceState)
@@ -74,7 +72,7 @@ fun MemoAppNavigation(viewModel: MemoViewModel) {
 
     NavHost(
         navController = navController,
-        startDestination = "home"
+        startDestination = Screen.Home.route
     ) {
         // ホーム画面
         composable(Screen.Home.route) {

@@ -1,6 +1,5 @@
 package com.ih13b175_16_tomo.st42_kadai01_memo.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

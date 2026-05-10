@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -37,10 +37,10 @@ fun EditScreen(
     viewModel: MemoViewModel,
     onNavigateBack: () -> Unit,
 ) {
-    // 指定されたIDをViewModelにセットしてデータを監視
-    LaunchedEffect(memoId) {
-        memoId?.let { viewModel.setMemoId(it) }
-    }
+//    // 指定されたIDをViewModelにセットしてデータを監視
+//    LaunchedEffect(memoId) {
+//        memoId?.let { viewModel.setMemoId(it) }
+//    }
 
     val memo = viewModel.getMemoById(memoId).collectAsState(initial = null)
 
@@ -51,6 +51,7 @@ fun EditScreen(
     // データの初期ロード
     LaunchedEffect(memo.value) {
         memo.value?.let {
+            // 初回のみセット
             if (title.isEmpty() && content.isEmpty()) {
                 title = it.title
                 content = it.content
@@ -66,7 +67,7 @@ fun EditScreen(
                 title = { Text("メモを編集") },
                 navigationIcon = {
                     IconButton(onClick = { onNavigateBack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "戻る")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "戻る")
                     }
                 }
             )
@@ -99,6 +100,7 @@ fun EditScreen(
                     .weight(1f),
             )
 
+            // 更新ボタン
             Button(
                 onClick = {
                     if (isValid) {

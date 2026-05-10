@@ -1,6 +1,5 @@
 package com.ih13b175_16_tomo.st42_kadai01_memo.ui.screens
 
-import android.widget.Space
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -48,6 +47,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.ih13b175_16_tomo.st42_kadai01_memo.data.model.Memo
 import com.ih13b175_16_tomo.st42_kadai01_memo.ui.MemoViewModel
 
+// メモ一覧画面
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
@@ -62,6 +62,7 @@ fun HomeScreen(
     var showDeleteDialog by remember { mutableStateOf(false) }
     var deleteMemo by remember { mutableStateOf<Memo?>(null) }
 
+    // メモ削除ダイアログ
     if (showDeleteDialog && deleteMemo != null) {
         AlertDialog(
             onDismissRequest = { showDeleteDialog = false },
@@ -151,6 +152,7 @@ fun HomeScreen(
     }
 }
 
+// メモカード
 @Composable
 fun MemoItem(
     memo: Memo,
@@ -168,7 +170,6 @@ fun MemoItem(
                 .padding(16.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-//            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Column(
                 modifier = Modifier
@@ -213,6 +214,7 @@ fun MemoItem(
     }
 }
 
+// メモカードのプレビュー
 @Preview
 @Composable
 fun MemoItemPreview() {

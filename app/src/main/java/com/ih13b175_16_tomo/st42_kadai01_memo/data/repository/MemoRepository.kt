@@ -1,8 +1,9 @@
 package com.ih13b175_16_tomo.st42_kadai01_memo.data.repository
 
+import kotlinx.coroutines.flow.Flow
+
 import com.ih13b175_16_tomo.st42_kadai01_memo.data.model.Memo
 import com.ih13b175_16_tomo.st42_kadai01_memo.data.model.MemoDao
-import kotlinx.coroutines.flow.Flow
 
 class MemoRepository(private val memoDao: MemoDao) {
     // 全件取得

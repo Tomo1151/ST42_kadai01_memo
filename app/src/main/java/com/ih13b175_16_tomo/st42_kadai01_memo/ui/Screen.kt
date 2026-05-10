@@ -1,5 +1,6 @@
 package com.ih13b175_16_tomo.st42_kadai01_memo.ui
 
+// 各画面のルート定義
 sealed class Screen(val route: String) {
     object Home: Screen("home")
     object Add: Screen("add")
